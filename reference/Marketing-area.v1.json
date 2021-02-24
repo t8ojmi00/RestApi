@@ -23,20 +23,12 @@
       "parameters": [
         {
           "schema": {
-            "type": "string"
+            "type": "string",
+            "minLength": 1
           },
           "name": "userId",
           "in": "path",
           "required": true
-        },
-        {
-          "schema": {
-            "type": "integer"
-          },
-          "name": "userId",
-          "in": "path",
-          "required": true,
-          "description": "Id of an existing user."
         }
       ],
       "get": {
@@ -85,14 +77,14 @@
         "summary": "Remote user",
         "tags": [],
         "responses": {
-          "200": {
-            "description": "OK"
-          },
           "404": {
-            "description": "Not Found"
+            "description": "Not Found",
+            "headers": {}
           }
         },
-        "operationId": "delete-users-userId"
+        "operationId": "delete-users-userId",
+        "parameters": [],
+        "description": ""
       },
       "post": {
         "summary": "",
@@ -152,7 +144,12 @@
             "API Key - 1": []
           }
         ]
-      }
+      },
+      "parameters": [
+        {
+          "required": true
+        }
+      ]
     }
   },
   "components": {
