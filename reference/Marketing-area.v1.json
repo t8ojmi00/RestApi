@@ -2,16 +2,26 @@
   "openapi": "3.0.0",
   "info": {
     "title": "Marketing area",
-    "version": "1.0"
+    "version": "1.0",
+    "description": "Manage user lists"
   },
   "servers": [
     {
-      "url": "http://localhost:3000"
+      "url": "http://marketing.stoplight.io",
+      "description": "Prod"
     }
   ],
   "paths": {
     "/users/{userId}": {
       "parameters": [
+        {
+          "schema": {
+            "type": "string"
+          },
+          "name": "userId",
+          "in": "path",
+          "required": true
+        },
         {
           "schema": {
             "type": "integer"
@@ -23,207 +33,105 @@
         }
       ],
       "get": {
-        "summary": "Get User Info by User ID",
+        "summary": "Get user",
         "tags": [],
         "responses": {
           "200": {
-            "description": "User Found",
+            "description": "OK",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/User"
-                },
-                "examples": {
-                  "Get User Alice Smith": {
-                    "value": {
-                      "id": 142,
-                      "firstName": "Alice",
-                      "lastName": "Smith",
-                      "email": "alice.smith@gmail.com",
-                      "dateOfBirth": "1997-10-31",
-                      "emailVerified": true,
-                      "signUpDate": "2019-08-24"
-                    }
-                  }
-                }
-              },
-              "application/xml": {
-                "schema": {
-                  "type": "object",
-                  "properties": {}
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "User Not Found"
-          }
-        },
-        "operationId": "get-users-userId",
-        "description": "Retrieve the information of the user with the matching user ID.",
-        "deprecated": true,
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {}
-              },
-              "examples": {
-                "example-1": {
-                  "value": {}
+                  "$ref": "#/components/schemas/User1"
                 }
               }
             }
           }
         },
-        "parameters": []
+        "operationId": "get-users-userId"
       },
-      "patch": {
-        "summary": "Update User Information",
-        "operationId": "patch-users-userId",
-        "responses": {
-          "200": {
-            "description": "User Updated",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/User"
-                },
-                "examples": {
-                  "Updated User Rebecca Baker": {
-                    "value": {
-                      "id": 13,
-                      "firstName": "Rebecca",
-                      "lastName": "Baker",
-                      "email": "rebecca@gmail.com",
-                      "dateOfBirth": "1985-10-02",
-                      "emailVerified": false,
-                      "createDate": "2019-08-24"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "User Not Found"
-          },
-          "409": {
-            "description": "Email Already Taken"
-          }
-        },
-        "description": "Update the infromation of an existing user.",
+      "put": {
+        "summary": "Update user",
+        "tags": [],
+        "responses": {},
+        "operationId": "put-users-userId",
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
-                "type": "object",
-                "properties": {
-                  "firstName": {
-                    "type": "string"
-                  },
-                  "lastName": {
-                    "type": "string"
-                  },
-                  "email": {
-                    "type": "string",
-                    "description": "If a new email is given, the user's email verified property will be set to false."
-                  },
-                  "dateOfBirth": {
-                    "type": "string"
-                  }
-                }
-              },
-              "examples": {
-                "Update First Name": {
-                  "value": {
-                    "firstName": "Rebecca"
-                  }
-                },
-                "Update Email": {
-                  "value": {
-                    "email": "rebecca@gmail.com"
-                  }
-                },
-                "Update Last Name & Date of Birth": {
-                  "value": {
-                    "lastName": "Baker",
-                    "dateOfBirth": "1985-10-02"
-                  }
+                "$ref": "#/components/schemas/User1"
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Remote user",
+        "tags": [],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          }
+        },
+        "operationId": "delete-users-userId"
+      }
+    },
+    "/users": {
+      "get": {
+        "summary": "Your GET endpoint",
+        "tags": [],
+        "responses": {},
+        "operationId": "get-users",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/User1"
                 }
               }
             }
-          },
-          "description": "Patch user properties to update."
+          }
         }
       },
       "post": {
         "summary": "",
-        "operationId": "post-users-userId",
+        "operationId": "post-users",
         "responses": {
           "200": {
             "description": "OK"
           }
         },
-        "deprecated": true
+        "security": [
+          {
+            "API Key - 1": []
+          }
+        ]
       }
     }
   },
   "components": {
     "schemas": {
       "User": {
-        "title": "User",
+        "title": "User1",
         "type": "object",
-        "description": "",
-        "x-examples": {
-          "Alice Smith": {
-            "id": 142,
-            "firstName": "Alice",
-            "lastName": "Smith",
-            "email": "alice.smith@gmail.com",
-            "dateOfBirth": "1997-10-31",
-            "emailVerified": true,
-            "signUpDate": "2019-08-24"
-          }
-        },
         "properties": {
           "id": {
-            "type": "integer",
-            "description": "Unique identifier for the given user."
-          },
-          "firstName": {
             "type": "string"
           },
-          "lastName": {
+          "Name": {
             "type": "string"
           },
-          "email": {
-            "type": "string",
-            "format": "email"
+          "Completed": {
+            "type": [
+              "string",
+              "boolean"
+            ]
           },
-          "dateOfBirth": {
-            "type": "string",
-            "format": "date",
-            "example": "1997-10-31"
-          },
-          "emailVerified": {
-            "type": "boolean",
-            "description": "Set to true if the user's email has been verified."
-          },
-          "createDate": {
-            "type": "string",
-            "format": "date",
-            "description": "The date that the user was created."
+          "Completed_at": {
+            "type": "string"
           }
-        },
-        "required": [
-          "id",
-          "firstName",
-          "lastName",
-          "email",
-          "emailVerified"
-        ]
+        }
       }
     },
     "securitySchemes": {
