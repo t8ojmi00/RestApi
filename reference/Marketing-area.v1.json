@@ -41,7 +41,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/User1"
+                  "$ref": "#/components/schemas/User"
                 }
               }
             }
@@ -58,7 +58,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/User1"
+                "$ref": "#/components/schemas/User"
               }
             }
           }
@@ -87,7 +87,7 @@
               "schema": {
                 "type": "array",
                 "items": {
-                  "$ref": "#/components/schemas/User1"
+                  "$ref": "#/components/schemas/User"
                 }
               }
             }
@@ -113,8 +113,9 @@
   "components": {
     "schemas": {
       "User": {
-        "title": "User1",
+        "title": "User",
         "type": "object",
+        "x-examples": {},
         "properties": {
           "id": {
             "type": "string"
@@ -123,10 +124,7 @@
             "type": "string"
           },
           "Completed": {
-            "type": [
-              "string",
-              "boolean"
-            ]
+            "type": "boolean"
           },
           "Completed_at": {
             "type": "string"
