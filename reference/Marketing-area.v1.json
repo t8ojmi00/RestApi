@@ -3,12 +3,19 @@
   "info": {
     "title": "Marketing area",
     "version": "1.0",
-    "description": "Manage user lists"
+    "description": "Manage user lists",
+    "contact": {
+      "name": "Mika O"
+    },
+    "license": {
+      "name": "MIT",
+      "url": "https://github.com/t8ojmi00/"
+    }
   },
   "servers": [
     {
-      "url": "http://marketing.stoplight.io",
-      "description": "Prod"
+      "url": "http://localhost:8080",
+      "description": "Localhost:8080"
     }
   ],
   "paths": {
@@ -45,6 +52,9 @@
                 }
               }
             }
+          },
+          "404": {
+            "description": "Not Found"
           }
         },
         "operationId": "get-users-userId"
@@ -52,7 +62,14 @@
       "put": {
         "summary": "Update user",
         "tags": [],
-        "responses": {},
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
         "operationId": "put-users-userId",
         "requestBody": {
           "content": {
@@ -68,18 +85,43 @@
         "summary": "Remote user",
         "tags": [],
         "responses": {
-          "204": {
-            "description": "No Content"
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
           }
         },
         "operationId": "delete-users-userId"
+      },
+      "post": {
+        "summary": "",
+        "operationId": "post-users-userId",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "409": {
+            "description": "Conflict"
+          }
+        }
       }
     },
     "/users": {
       "get": {
         "summary": "Your GET endpoint",
         "tags": [],
-        "responses": {},
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
         "operationId": "get-users",
         "requestBody": {
           "content": {
@@ -100,6 +142,9 @@
         "responses": {
           "200": {
             "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
           }
         },
         "security": [
@@ -118,16 +163,55 @@
         "x-examples": {},
         "properties": {
           "id": {
-            "type": "string"
+            "type": "string",
+            "format": "uuid",
+            "minLength": 1
           },
           "Name": {
-            "type": "string"
+            "type": "string",
+            "format": "hostname",
+            "minLength": 1,
+            "maxLength": 50
           },
           "Completed": {
             "type": "boolean"
           },
           "Completed_at": {
             "type": "string"
+          },
+          "Created": {
+            "type": "object",
+            "format": "date-time",
+            "properties": {
+              "Date": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "Timezone_type": {
+                "type": "number"
+              },
+              "Timezone": {
+                "type": "string"
+              }
+            }
+          },
+          "Modified": {
+            "type": [
+              "string",
+              "object"
+            ],
+            "properties": {
+              "Date": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "Timezone_type": {
+                "type": "number"
+              },
+              "Timezone": {
+                "type": "string"
+              }
+            }
           }
         }
       }
