@@ -9,7 +9,7 @@
     },
     "license": {
       "name": "MIT",
-      "url": "https://github.com/t8ojmi00/"
+      "url": "https://github.com/t8ojmi00"
     }
   },
   "servers": [
@@ -189,10 +189,24 @@
         "tags": [],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
           },
           "404": {
-            "description": "Not Found"
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
           }
         },
         "operationId": "get-users",
@@ -200,20 +214,42 @@
           {
             "API Key - 1": []
           }
-        ]
+        ],
+        "description": "All users"
       },
       "post": {
         "summary": "",
         "operationId": "post-users",
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
           },
           "404": {
-            "description": "Not Found"
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
           },
           "406": {
-            "description": "Email is already in use"
+            "description": "Email is already in use",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
           }
         },
         "security": [

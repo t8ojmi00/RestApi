@@ -24,10 +24,24 @@
         "operationId": "get-user",
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./Marketing-area.v1.json#/components/schemas/User"
+                }
+              }
+            }
           },
           "404": {
-            "description": "Not Found"
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./Marketing-area.v1.json#/components/schemas/User"
+                }
+              }
+            }
           }
         },
         "description": "All users",
@@ -48,13 +62,34 @@
         "operationId": "post-users",
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./Marketing-area.v1.json#/components/schemas/User"
+                }
+              }
+            }
           },
           "404": {
-            "description": "Not Found"
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./Marketing-area.v1.json#/components/schemas/User"
+                }
+              }
+            }
           },
           "406": {
-            "description": "Not Acceptable"
+            "description": "Not Acceptable",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./Marketing-area.v1.json#/components/schemas/User"
+                }
+              }
+            }
           }
         },
         "description": "Create ID",
