@@ -35,13 +35,20 @@
       "get": {
         "summary": "Get user",
         "tags": [],
+        "operationId": "get-users-userId",
+        "security": [
+          {
+            "API Key - 1": []
+          }
+        ],
+        "description": "",
         "responses": {
           "200": {
             "description": "OK",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/User"
+                  "$ref": "./Sales-of-products.v1.json#/components/schemas/UserID"
                 }
               }
             }
@@ -51,96 +58,29 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/User"
+                  "$ref": "./Sales-of-products.v1.json#/components/schemas/UserID"
                 }
-              }
-            }
-          }
-        },
-        "operationId": "get-users-userId"
-      },
-      "put": {
-        "summary": "Update user",
-        "tags": [],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/User"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Not Found",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/User"
-                }
-              }
-            }
-          }
-        },
-        "operationId": "put-users-userId",
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/User"
               }
             }
           }
         }
       },
-      "delete": {
-        "summary": "Remote user",
+      "put": {
+        "summary": "Update user",
         "tags": [],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "headers": {},
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/User"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Not Found",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/User"
-                }
-              }
-            }
+        "operationId": "put-users-userId",
+        "security": [
+          {
+            "API Key - 1": []
           }
-        },
-        "operationId": "delete-users-userId",
-        "parameters": [],
-        "description": ""
-      },
-      "post": {
-        "summary": "",
-        "operationId": "post-users-userId",
+        ],
         "responses": {
           "200": {
             "description": "OK",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/User"
-                }
-              },
-              "application/xml": {
-                "schema": {
-                  "type": "object",
-                  "properties": {}
+                  "$ref": "./Sales-of-products.v1.json#/components/schemas/UserID"
                 }
               }
             }
@@ -150,7 +90,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/User"
+                  "$ref": "./Sales-of-products.v1.json#/components/schemas/UserID"
                 }
               }
             }
@@ -160,7 +100,82 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/User"
+                  "$ref": "./Sales-of-products.v1.json#/components/schemas/UserID"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Remote user",
+        "tags": [],
+        "operationId": "delete-users-userId",
+        "parameters": [],
+        "description": "",
+        "security": [
+          {
+            "API Key - 1": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./Sales-of-products.v1.json#/components/schemas/UserID"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./Sales-of-products.v1.json#/components/schemas/UserID"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "",
+        "operationId": "post-users-userId",
+        "security": [
+          {
+            "API Key - 1": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./Sales-of-products.v1.json#/components/schemas/UserID"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./Sales-of-products.v1.json#/components/schemas/UserID"
+                }
+              }
+            }
+          },
+          "406": {
+            "description": "Not Acceptable",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./Sales-of-products.v1.json#/components/schemas/UserID"
                 }
               }
             }
@@ -181,18 +196,11 @@
           }
         },
         "operationId": "get-users",
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "array",
-                "items": {
-                  "$ref": "#/components/schemas/User"
-                }
-              }
-            }
+        "security": [
+          {
+            "API Key - 1": []
           }
-        }
+        ]
       },
       "post": {
         "summary": "",
@@ -203,13 +211,17 @@
           },
           "404": {
             "description": "Not Found"
+          },
+          "406": {
+            "description": "Email is already in use"
           }
         },
         "security": [
           {
             "API Key - 1": []
           }
-        ]
+        ],
+        "description": "Create new ID"
       },
       "parameters": [
         {
@@ -220,66 +232,38 @@
   },
   "components": {
     "schemas": {
+      "UserID": {
+        "title": "UserID",
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "firstname": {
+            "type": "string"
+          },
+          "lastname": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "dateOfBirth": {
+            "type": "string"
+          },
+          "emailVerified": {
+            "type": "boolean"
+          },
+          "createDate": {
+            "type": "string"
+          }
+        },
+        "description": ""
+      },
       "User": {
         "title": "User",
         "type": "object",
-        "x-examples": {},
-        "properties": {
-          "id": {
-            "type": "string",
-            "format": "uuid",
-            "minLength": 1
-          },
-          "Name": {
-            "type": "string",
-            "format": "hostname",
-            "minLength": 1,
-            "maxLength": 50
-          },
-          "Completed": {
-            "type": "boolean"
-          },
-          "Completed_at": {
-            "type": "string"
-          },
-          "Created": {
-            "type": "object",
-            "format": "date-time",
-            "properties": {
-              "Date": {
-                "type": "string",
-                "format": "date-time"
-              },
-              "Timezone_type": {
-                "type": "number"
-              },
-              "Timezone": {
-                "type": "string"
-              }
-            }
-          },
-          "Modified": {
-            "type": [
-              "string",
-              "object"
-            ],
-            "properties": {
-              "Date": {
-                "type": "string",
-                "format": "date-time"
-              },
-              "Timezone_type": {
-                "type": "number"
-              },
-              "Timezone": {
-                "type": "string"
-              }
-            }
-          }
-        },
-        "required": [
-          "id"
-        ]
+        "description": "All users"
       }
     },
     "securitySchemes": {
@@ -288,6 +272,8 @@
         "type": "apiKey",
         "in": "query"
       }
-    }
+    },
+    "responses": {},
+    "examples": {}
   }
 }

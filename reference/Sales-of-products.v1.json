@@ -18,200 +18,6 @@
     }
   ],
   "paths": {
-    "/users/{userID}": {
-      "parameters": [
-        {
-          "schema": {
-            "type": "integer"
-          },
-          "name": "userID",
-          "in": "path",
-          "required": true,
-          "description": "Id of an existing user."
-        }
-      ],
-      "get": {
-        "summary": "Get User Info by User ID",
-        "tags": [],
-        "responses": {
-          "200": {
-            "description": "User Found",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/User"
-                },
-                "examples": {
-                  "Get User Alice Smith": {
-                    "value": {
-                      "id": 142,
-                      "firstName": "Alice",
-                      "lastName": "Smith",
-                      "email": "alice.smith@gmail.com",
-                      "dateOfBirth": "1997-10-31",
-                      "emailVerified": true,
-                      "signUpDate": "2019-08-24"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "User Not Found",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "./Marketing-area.v1.json#/components/schemas/User"
-                }
-              }
-            }
-          }
-        },
-        "operationId": "get-users-userId",
-        "description": "Retrieve the information of the user with the matching user ID."
-      },
-      "put": {
-        "summary": "",
-        "operationId": "put-users-userId",
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "./Marketing-area.v1.json#/components/schemas/User"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Not Found"
-          },
-          "406": {
-            "description": "Not Acceptable"
-          }
-        },
-        "description": "Update the infromation of an existing user."
-      },
-      "delete": {
-        "summary": "",
-        "operationId": "delete-users-userId",
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "./Marketing-area.v1.json#/components/schemas/User"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Not Found",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "./Marketing-area.v1.json#/components/schemas/User"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/user": {
-      "post": {
-        "summary": "Create New User",
-        "operationId": "post-user",
-        "responses": {
-          "200": {
-            "description": "User Created",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/User"
-                },
-                "examples": {
-                  "New User Bob Fellow": {
-                    "value": {
-                      "id": 12,
-                      "firstName": "Bob",
-                      "lastName": "Fellow",
-                      "email": "bob.fellow@gmail.com",
-                      "dateOfBirth": "1996-08-24",
-                      "emailVerified": false,
-                      "createDate": "2020-11-18"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Missing Required Information"
-          },
-          "409": {
-            "description": "Email Already Taken"
-          }
-        },
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "firstName": {
-                    "type": "string"
-                  },
-                  "lastName": {
-                    "type": "string"
-                  },
-                  "email": {
-                    "type": "string"
-                  },
-                  "dateOfBirth": {
-                    "type": "string",
-                    "format": "date"
-                  }
-                },
-                "required": [
-                  "firstName",
-                  "lastName",
-                  "email",
-                  "dateOfBirth"
-                ]
-              },
-              "examples": {
-                "Create User Bob Fellow": {
-                  "value": {
-                    "firstName": "Bob",
-                    "lastName": "Fellow",
-                    "email": "bob.fellow@gmail.com",
-                    "dateOfBirth": "1996-08-24"
-                  }
-                }
-              }
-            }
-          },
-          "description": "Post the necessary fields for the API to create a new user."
-        },
-        "description": "Create a new user."
-      },
-      "delete": {
-        "summary": "",
-        "operationId": "delete-user",
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "404": {
-            "description": "Not Found"
-          }
-        }
-      }
-    },
     "/users({userId}/sales-of-production": {
       "parameters": [
         {
@@ -232,23 +38,28 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/User"
+                  "$ref": "#/components/schemas/UserID"
                 }
               }
             }
           },
-          "404": {
-            "description": "Not Found",
+          "406": {
+            "description": "Not Acceptable",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/User"
+                  "$ref": "#/components/schemas/UserID"
                 }
               }
             }
           }
         },
-        "operationId": "get-users(-userId-sales-of-production"
+        "operationId": "get-users(-userId-sales-of-production",
+        "security": [
+          {
+            "API Key - 1": []
+          }
+        ]
       },
       "put": {
         "summary": "",
@@ -259,7 +70,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/User"
+                  "$ref": "#/components/schemas/UserID"
                 }
               }
             }
@@ -269,7 +80,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/User"
+                  "$ref": "#/components/schemas/UserID"
                 }
               }
             }
@@ -279,12 +90,17 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/User"
+                  "$ref": "#/components/schemas/UserID"
                 }
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "API Key - 1": []
+          }
+        ]
       },
       "delete": {
         "summary": "",
@@ -295,7 +111,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/User"
+                  "$ref": "#/components/schemas/UserID"
                 }
               }
             }
@@ -305,12 +121,17 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/User"
+                  "$ref": "#/components/schemas/UserID"
                 }
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "API Key - 1": []
+          }
+        ]
       },
       "post": {
         "summary": "",
@@ -321,7 +142,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/User"
+                  "$ref": "#/components/schemas/UserID"
                 }
               }
             }
@@ -331,7 +152,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/User"
+                  "$ref": "#/components/schemas/UserID"
                 }
               }
             }
@@ -341,18 +162,23 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/User"
+                  "$ref": "#/components/schemas/UserID"
                 }
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "API Key - 1": []
+          }
+        ]
       }
     }
   },
   "components": {
     "schemas": {
-      "User": {
+      "UserID": {
         "title": "User",
         "type": "object",
         "description": "",
@@ -405,6 +231,13 @@
           "dateOfBirth",
           "emailVerified"
         ]
+      }
+    },
+    "securitySchemes": {
+      "API Key - 1": {
+        "name": "API Key",
+        "type": "apiKey",
+        "in": "query"
       }
     }
   }
