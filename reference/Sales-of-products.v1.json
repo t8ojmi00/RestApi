@@ -1,0 +1,411 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Sales of products",
+    "version": "1.0",
+    "contact": {
+      "name": "t8ojmi00"
+    },
+    "license": {
+      "name": "MIT",
+      "url": "https://github.com/t8ojmi00"
+    }
+  },
+  "servers": [
+    {
+      "url": "http://localhost:8080",
+      "description": "Localhost:8080"
+    }
+  ],
+  "paths": {
+    "/users/{userID}": {
+      "parameters": [
+        {
+          "schema": {
+            "type": "integer"
+          },
+          "name": "userID",
+          "in": "path",
+          "required": true,
+          "description": "Id of an existing user."
+        }
+      ],
+      "get": {
+        "summary": "Get User Info by User ID",
+        "tags": [],
+        "responses": {
+          "200": {
+            "description": "User Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                },
+                "examples": {
+                  "Get User Alice Smith": {
+                    "value": {
+                      "id": 142,
+                      "firstName": "Alice",
+                      "lastName": "Smith",
+                      "email": "alice.smith@gmail.com",
+                      "dateOfBirth": "1997-10-31",
+                      "emailVerified": true,
+                      "signUpDate": "2019-08-24"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "User Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./Marketing-area.v1.json#/components/schemas/User"
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-users-userId",
+        "description": "Retrieve the information of the user with the matching user ID."
+      },
+      "put": {
+        "summary": "",
+        "operationId": "put-users-userId",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./Marketing-area.v1.json#/components/schemas/User"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "406": {
+            "description": "Not Acceptable"
+          }
+        },
+        "description": "Update the infromation of an existing user."
+      },
+      "delete": {
+        "summary": "",
+        "operationId": "delete-users-userId",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./Marketing-area.v1.json#/components/schemas/User"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./Marketing-area.v1.json#/components/schemas/User"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/user": {
+      "post": {
+        "summary": "Create New User",
+        "operationId": "post-user",
+        "responses": {
+          "200": {
+            "description": "User Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                },
+                "examples": {
+                  "New User Bob Fellow": {
+                    "value": {
+                      "id": 12,
+                      "firstName": "Bob",
+                      "lastName": "Fellow",
+                      "email": "bob.fellow@gmail.com",
+                      "dateOfBirth": "1996-08-24",
+                      "emailVerified": false,
+                      "createDate": "2020-11-18"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Missing Required Information"
+          },
+          "409": {
+            "description": "Email Already Taken"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "firstName": {
+                    "type": "string"
+                  },
+                  "lastName": {
+                    "type": "string"
+                  },
+                  "email": {
+                    "type": "string"
+                  },
+                  "dateOfBirth": {
+                    "type": "string",
+                    "format": "date"
+                  }
+                },
+                "required": [
+                  "firstName",
+                  "lastName",
+                  "email",
+                  "dateOfBirth"
+                ]
+              },
+              "examples": {
+                "Create User Bob Fellow": {
+                  "value": {
+                    "firstName": "Bob",
+                    "lastName": "Fellow",
+                    "email": "bob.fellow@gmail.com",
+                    "dateOfBirth": "1996-08-24"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Post the necessary fields for the API to create a new user."
+        },
+        "description": "Create a new user."
+      },
+      "delete": {
+        "summary": "",
+        "operationId": "delete-user",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/users({userId}/sales-of-production": {
+      "parameters": [
+        {
+          "schema": {
+            "type": "string"
+          },
+          "name": "userId",
+          "in": "path",
+          "required": true
+        }
+      ],
+      "get": {
+        "summary": "Your GET endpoint",
+        "tags": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-users(-userId-sales-of-production"
+      },
+      "put": {
+        "summary": "",
+        "operationId": "put-users(-userId-sales-of-production",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          },
+          "406": {
+            "description": "Not Acceptable",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "",
+        "operationId": "delete-users(-userId-sales-of-production",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "",
+        "operationId": "post-users(-userId-sales-of-production",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          },
+          "406": {
+            "description": "Not Acceptable",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "User": {
+        "title": "User",
+        "type": "object",
+        "description": "",
+        "x-examples": {
+          "Alice Smith": {
+            "id": 142,
+            "firstName": "Alice",
+            "lastName": "Smith",
+            "email": "alice.smith@gmail.com",
+            "dateOfBirth": "1997-10-31",
+            "emailVerified": true,
+            "signUpDate": "2019-08-24"
+          }
+        },
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "Unique identifier for the given user."
+          },
+          "firstName": {
+            "type": "string"
+          },
+          "lastName": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string",
+            "format": "email"
+          },
+          "dateOfBirth": {
+            "type": "string",
+            "format": "date",
+            "example": "1997-10-31"
+          },
+          "emailVerified": {
+            "type": "boolean",
+            "description": "Set to true if the user's email has been verified."
+          },
+          "createDate": {
+            "type": "string",
+            "format": "date",
+            "description": "The date that the user was created."
+          }
+        },
+        "required": [
+          "id",
+          "firstName",
+          "lastName",
+          "email",
+          "dateOfBirth",
+          "emailVerified"
+        ]
+      }
+    }
+  }
+}

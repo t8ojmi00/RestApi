@@ -5,7 +5,7 @@
     "version": "1.0",
     "description": "Manage user lists",
     "contact": {
-      "name": "Mika O"
+      "name": "t8ojmi00"
     },
     "license": {
       "name": "MIT",
@@ -19,16 +19,17 @@
     }
   ],
   "paths": {
-    "/users/{userId}": {
+    "/users/{userID}": {
       "parameters": [
         {
           "schema": {
             "type": "string",
             "minLength": 1
           },
-          "name": "userId",
+          "name": "userID",
           "in": "path",
-          "required": true
+          "required": true,
+          "description": "Id of an existing user."
         }
       ],
       "get": {
@@ -46,7 +47,14 @@
             }
           },
           "404": {
-            "description": "Not Found"
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
           }
         },
         "operationId": "get-users-userId"
@@ -56,10 +64,24 @@
         "tags": [],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
           },
           "404": {
-            "description": "Not Found"
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
           }
         },
         "operationId": "put-users-userId",
@@ -77,9 +99,26 @@
         "summary": "Remote user",
         "tags": [],
         "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {},
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          },
           "404": {
             "description": "Not Found",
-            "headers": {}
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
           }
         },
         "operationId": "delete-users-userId",
@@ -91,13 +130,40 @@
         "operationId": "post-users-userId",
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            }
           },
           "404": {
-            "description": "Not Found"
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
           },
-          "409": {
-            "description": "Conflict"
+          "406": {
+            "description": "Not Acceptable",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
           }
         }
       }
@@ -210,7 +276,10 @@
               }
             }
           }
-        }
+        },
+        "required": [
+          "id"
+        ]
       }
     },
     "securitySchemes": {
